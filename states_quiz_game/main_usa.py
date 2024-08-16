@@ -29,10 +29,11 @@ while len(guessed_states) <= 50:
     )
 
     if answer_state is None or answer_state.lower() == "exit":
-        missed_states = []
-        for state in all_states:
-            if state not in guessed_states:
-                missed_states.append(state)
+        missed_states = [state for state in all_states if state not in guessed_states]
+        # missed_states = []
+        # for state in all_states:
+        #     if state not in guessed_states:
+        #         missed_states.append(state)
         new_data = pandas.DataFrame(missed_states)
         new_data.to_csv("./states_quiz_game/states_to_learn.csv")
         break
